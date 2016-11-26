@@ -8,6 +8,7 @@ import reducer from './reducers/index';
 import render from './renderers';
 
 import tick from './actions/tick';
+import keypress from './actions/keypress';
 
 const store = createStore(
   reducer,
@@ -26,5 +27,7 @@ store.subscribe(() => {
 
 const nextTickButton = document.querySelector('[data-next-tick]');
 nextTickButton.addEventListener('click', () => store.dispatch(tick()));
+
+document.addEventListener('keypress', (event) => store.dispatch(keypress(event)));
 
 store.dispatch(tick());
