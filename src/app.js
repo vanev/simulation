@@ -7,6 +7,8 @@ import reducer from './reducers/index';
 
 import render from './renderers';
 
+import tick from './actions/tick';
+
 const store = createStore(
   reducer,
   initialState,
@@ -19,6 +21,10 @@ const context = canvasEl.getContext('2d');
 store.subscribe(() => {
   const state = store.getState();
   render(context)(state);
+  if (state.ticking) requestAnimationFrame(() => store.dispatch(tick()));
 });
 
-render(context)(initialState);
+const nextTickButton = document.querySelector('[data-next-tick]');
+nextTickButton.addEventListener('click', () => store.dispatch(tick()));
+
+store.dispatch(tick());

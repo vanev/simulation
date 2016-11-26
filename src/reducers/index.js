@@ -1,10 +1,19 @@
+import { TICK } from '../actions/tick';
+import ticking from './ticking';
+
 const initialState = {};
 
 const index = (state=initialState, { type, payload }) => {
   switch (type) {
 
-  default:
+  case TICK:
     return state;
+
+  default:
+    return {
+      ...state,
+      ticking: ticking(state.ticking, { type, payload })
+    };
 
   }
 };
