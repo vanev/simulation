@@ -1,6 +1,7 @@
 {
   "scripts": {
-    "test": "mocha --compilers js:babel-register ./tests/**/*_spec.js"
+    "dev": "./node_modules/.bin/webpack-dev-server",
+    "test": "./node_modules/.bin/mocha --compilers js:babel-register ./src/**/*.spec.js"
   },
   "devDependencies": {
     "babel-core": "^6.18.2",
